@@ -1,0 +1,24 @@
+<form action="{{ path("fos_user_security_check") }}" method="post">
+
+<div class="col-xs-2 wlc-signin-fa div-no-padding">
+    <i class="fa fa-user"></i>
+</div>
+
+<div class="col-lg-8 wlc-signin-content div-no-padding">
+    <div class="form-group">
+        <input type="text" class="form-control " id="username" name="_username" value="{{ last_username }}" required="required" placeholder="Username" />
+        <input type="password" class="form-control "id="password" name="_password" required="required" placeholder="Mot de passe" />
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    </div>
+</div>
+
+
+<div class="col-xs-2 wlc-signin-fa wlc-signin-fa-signin">
+    <button type="submit" id="_submit" name="_submit" class="btn btn-fade"><i class="fa fa-sign-in"></i></button>
+</div>
+
+</form>
+
+
+
+

@@ -1,0 +1,61 @@
+<div class="row wish-header connected-user">
+
+    <div class="dropdown pull-left">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <button class="btn btn-connected dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            {{ app.user.username|truncate(17) }}
+            <span class="caret"></span>
+        </button>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('fos_user_profile_edit') }}"> <i class="fa fa-user"></i> Mon profil</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#modalAddAnnonce" id="modalAddAnnonceShow"><i class="fa fa-newspaper-o"></i> Publier une annonce</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-toggle-on"></i> Parametres</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_logout') }}"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+        </ul>
+        {% else %}
+            <button class="btn btn-connected dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+                 Anonyme
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" data-toggle="modal" data-target="#modalSignin">Connexion</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('fos_user_registration_register') }} ">Inscription</a></li>
+            </ul>
+        {% endif %}
+    </div>
+    <div class="pull-right">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+            {% set picture = 'uploads/user/avatar/'~app.user.avatar.path %}
+            <img src="{{ picture | imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="#"/>
+        {% else %}
+            <img src="{{ 'bundles/wishtersfront/images/avatars/noAvatar.png'| imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="pull-right"/>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="row propose-user">
+    <div class="propose-search">
+        <div class="input-group input-group-sm">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control input-sm" placeholder="Recherche">
+        </div>
+    </div>
+
+    <ul class="list-group propose-list">
+        {% for p in propose %}
+            <li class="list-group-item">
+                {% set picture = 'uploads/user/avatar/'~p.user.avatar.path %}
+                <img src="{{ picture | imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="img-rounded"/>
+                <div class="content">
+                    <span class="badge pull-right">{{ p.price }}€</span>
+                    <span class="strong"><a href="{{ path('wishters_user_show_user_profil', {'user': p.user.id}) }}" class="inherit-link">{{ p.user.username|truncate(17) }}</a></span>
+                    <p class="strong"><a href="{{ path('wishters_front_annonce_show', {'id': p.id }) }}">{{ p.title }}</a></p>
+                </div>
+                <p class="propose_region"><a href="{{ path('wishter_front_region_show', {'region': p.region.slug}) }}" class="inherit-link">{{ p.region.nom }} ( 83 )</a></p>
+            </li>
+        {% endfor %}
+        </ul>
+</div>

@@ -1,0 +1,132 @@
+<div class="flux-container">
+
+    <ul class="list-group flux-blog">
+
+        {# AJOUT DE MESSAGE DANS LE BLOG #}
+        {% if messages is not empty %}
+            {% if messages|length <= 2 %}
+                {% for m in messages %}
+                    {% if (m.price is defined) and (loop.index <= 1) %}
+                        <li class="list-group-item showBlogModal" data-toggle="modal" data-target="#modal_blog_activity"><img src="{{ asset('bundles/wishtersfront/images/defaults/user-4.jpg') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                            <div class="flux-content">
+                                <h4>
+                                    <a href="#" class="active">John Doe</a> <span class="note">" Ceci est un exemple des messages de vos abonnements que vous pourriez retrouver sur votre espace. "</span></h4>
+                                <a href="#" class="choice">Voir le résumé</a> -
+                                <a href="#" class="choice">Masquer ses messages</a>
+                                <span class="pull-right"><i class="fa fa-clock-o"> La date</i></span>
+                            </div>
+                        </li>
+                    {% elseif (m.price is not defined) and (loop.index <= 1) %}
+                        <li class="list-group-item">
+                            <img src="{{ 'bundles/wishtersfront/images/actu/telechargement.jpeg' | imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                            <div class="flux-content">
+                                <i class="fa fa-euro pull-right"> 100</i>
+                                <h4>
+                                    <a href="#" class="active username">John Doe</a> demande : <a href="#" class="active">Un smartphone iTech</a> ( Ceci est un exemple ) </h4>
+                                <a href="#" class="choice">Proposer un produit </a> |
+                                <a href="#" class="choice"> Se désabonner </a> |
+
+                                <a href="#" class="choice"> <i class="fa fa-bolt"></i> Négociable</a> |
+                                <a href="#" class="choice"> <i class="fa fa-legal"></i> Urgent</a>|
+                                <a href="#" class="request">#smartphone </a>
+
+                                <span class="pull-right"><i class="fa fa-clock-o"> La date</i></span>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% for m in messages %}
+                {% if m.price is not defined %}
+                    <li class="list-group-item showBlogModal" data-toggle="modal" data-target="#modal_blog_activity" rel="{{ m.user.id }}"><img src="{{ asset('bundles/wishtersfront/images/defaults/user-4.jpg') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        <div class="flux-content">
+                            <h4>
+                                <a href="{{ path('wishters_user_show_user_profil', {'user': m.user.id }) }}" class="active">{{ m.user.username }}:</a> <span class="note">" {{ m.content }} "</span></h4>
+                            <a href="#" class="choice" rel="{{ m.user.id }}">Voir le résumé</a>
+                            {% if app.user.username != m.user.username %}
+                                |
+                                <a href="#" class="choice">Masquer les messages de {{ m.user.username }}</a>
+                            {% endif %}
+                            <span class="pull-right"><i class="fa fa-clock-o"> {{ m.date|date('d/m à  h\\hm') }}mn</i></span>
+                        </div>
+                    </li>
+                {% else %}
+
+                    {# MODULE DE PRÉSENTATION DU SPACEBOX #}
+                    <li class="list-group-item">
+
+                        {% if m.picture is not empty %}
+                            {% set picture = 'uploads/annonce/'~m.picture.path  %}
+                            <img src="{{ picture | imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        {% else %}
+                            <img src="{{ 'bundles/wishtersfront/images/actu/telechargement.jpeg' | imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        {% endif %}
+                        <div class="flux-content">
+                            <i class="fa fa-euro pull-right"> {{ m.price }}</i>
+                            <h4>
+                                <a href="{{ path('wishters_user_show_user_profil', {'user': m.user.id }) }}" class="active username">{{ m.user.username }}</a> demande : <a href="{{ path('wishters_front_annonce_show', {'id': m.id}) }}" class="active">{{ m.title }}</a> </h4>
+
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') and m.user == app.user %}
+                                <div class="dropdown pull-left blog_actions">
+                                    <span id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Actions <i class="caret"></i></span>
+
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('wishters_front_annonce_edit', {'id': m.id} ) }}"><i class="fa fa-edit"></i> Modifier mon annonce </a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('wishters_front_annonce_remove', {'id': m.id}) }}"><i class="fa fa-eraser"></i> Supprimer cette annonce</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-calendar"></i> Non implenté</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-calendar"></i> Non implenté</a></li>
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <a href="#" class="choice">Proposer un produit </a> |
+                                <a href="#" class="choice remove-abonnement-btn-blog" rel="{{ m.user.id }}"> Se désabonner </a> |
+                            {% endif %}
+
+                            <a href="#" class="choice"> <i class="fa fa-bolt {{ m.negoce|validate_option }}"></i></a> |
+                            <a href="#" class="choice"> <i class="fa fa-legal {{ m.urgent|validate_option  }}"></i></a>|
+                            <a href="{{ path('wishters_front_annonce_hashtag_show', {'hashtag' : m.hashtag})}}" class="request">{{ m.hashtag|check_diese }} </a>
+
+                            <span class="pull-right"><i class="fa fa-clock-o"> {{ m.date|date('d/m à h\\hm') }}mn</i></span>
+                        </div>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+        {% else %}
+            <li class="list-group-item">
+                <img src="{{ 'bundles/wishtersfront/images/actu/telechargement.jpeg' | imagine_filter('my_top_propose_avatar') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                <div class="flux-content">
+                    <i class="fa fa-euro pull-right"> 100</i>
+                    <h4>
+                        <a href="#" class="active username">John Doe</a> demande : <a href="#" class="active">Un smartphone iTech</a> </h4>
+                    <a href="#" class="choice">Proposer un produit </a> |
+                    <a href="#" class="choice"> Se désabonner </a> |
+
+                    <a href="#" class="choice"> <i class="fa fa-bolt"></i> Négociable</a> |
+                    <a href="#" class="choice"> <i class="fa fa-legal"></i> Urgent</a>|
+                    <a href="#" class="request">#smartphone </a>
+
+                    <span class="pull-right"><i class="fa fa-clock-o"> La date</i></span>
+                </div>
+            </li>
+            <li class="list-group-item showBlogModal" data-toggle="modal" data-target="#modal_blog_activity"><img src="{{ asset('bundles/wishtersfront/images/avatars/user-4.jpg') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                <div class="flux-content">
+                    <h4>
+                        <a href="#" class="active">John Doe</a> <span class="note">" Ceci est un exemple des messages de vos abonnements que vous pourriez retrouver sur votre espace. "</span></h4>
+                    <a href="#" class="choice">Voir le résumé</a> -
+                    <a href="#" class="choice">Masquer ses messages</a>
+                    <span class="pull-right"><i class="fa fa-clock-o"> La date</i></span>
+                </div>
+            </li>
+        {% endif %}
+
+    </ul>
+</div>
+
+{# display navigation #}
+<div class="navigation text-center">
+    {{ knp_pagination_render(messages) }}
+</div>
+
+{% include '@WishtersFront/ModalBox/modal_blog_activity.html.twig' %}

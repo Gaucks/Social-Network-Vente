@@ -1,0 +1,20 @@
+<div class="col-xs-3 wish-header-menu">
+    <ul class="nav nav-pills">
+        <li><a href="#"><i class="fa fa-users"></i></a></li>
+        <li><a href="{{ path('wishter_front_region_show') }}" alt="Toute la france"><i class="fa fa-globe"></i></a></li>
+        <li><a href="#"><i class="fa fa-comment"></i></a></li>
+    </ul>
+</div>
+
+<div class="col-xs-9 wish-header-search">
+    <div class="col-xs-8">
+        {{ render(controller('WishtersFrontBundle:Annonce:search')) }}
+    <div id="search-result">
+        <div class="result list-group col-xs-11 ">
+
+        </div>
+    </div>
+    </div>
+    <div class="col-xs-4"></div>
+
+</div>

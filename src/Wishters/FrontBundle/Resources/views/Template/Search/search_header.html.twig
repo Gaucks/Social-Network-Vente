@@ -1,0 +1,7 @@
+<form action="{{ path('wishters_front_annonce_search_traitement') }}" method="post">
+    <div class="input-group input-group-sm">
+        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+        {{ form_widget(form.content,{'attr': {'class' : 'form-control', 'placeholder': 'Rechercher un produit à vendre'} }) }}
+        {{ form_rest(form) }}
+    </div>
+</form>

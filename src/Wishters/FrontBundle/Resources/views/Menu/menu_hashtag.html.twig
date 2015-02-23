@@ -1,0 +1,19 @@
+<div class="user-infos">
+    <img src="{{ 'bundles/wishtersfront/images/carteFrance.png'| imagine_filter('my_carte') }}" alt="Avatar" class="img-rounded img-responsive"/>
+    <div class="user-infos-options">
+        <h3>{{ hashtag|check_diese }}</h3>
+
+        <button type="button" class="btn btn-success btn-sm"><i class="fa fa-wifi"></i> Suivre</button>
+        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-comment"></i> Proposer</button>
+    </div>
+</div>
+
+<div class="user-activity">
+    <h3>Activité</h3>
+    <ul class="list-group">
+        <li class="list-group-item"><i class="fa fa-anchor"></i> Blog <span class="badge badge-default pull-right">new</span></li>
+        <li class="list-group-item"><i class="fa fa-shopping-cart"></i> Message <span class="badge badge-default pull-right">0</span></li>
+        <li class="list-group-item"><i class="fa fa-coffee"></i> Annonces <span class="badge badge-default pull-right">{{ annonces|length }}</span></li>
+        <li class="list-group-item"><i class="fa fa-comments-o"></i> Abonnés <span class="badge badge-default pull-right">2</span></li>
+    </ul>
+</div>

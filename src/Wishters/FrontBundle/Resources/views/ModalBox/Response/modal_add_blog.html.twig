@@ -1,0 +1,10 @@
+<form action="{{ path('wishter_front_blog_add_traitement') }}" {{ form_enctype(form) }} method="POST" id="formAddMessage">
+
+    {{ form_widget(form) }}
+    {{ form_rest(form) }}
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Publier</button>
+    </div>
+</form>

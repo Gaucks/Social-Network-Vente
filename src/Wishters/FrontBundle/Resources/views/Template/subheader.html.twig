@@ -1,0 +1,109 @@
+<div class="row subheader-nav" id="subheader-header">
+    <div class="col-xs-3">
+        <h3>Le mot <i class="fa fa-arrow-circle-o-right pull-right"></i></h3>
+    </div>
+    <div class="col-xs-4 border-active-cote">
+
+        <h3><a href="{{ path('wishter_front_region_show') }}">Ma région <i class="fa fa-arrow-circle-o-right pull-right"></i></a></h3>
+
+    </div>
+    <div class="col-xs-5 border-active-cote">
+        <h3>Achats <i class="fa fa-arrow-circle-o-right pull-right"></i></h3>
+    </div>
+</div>
+
+<div class="row subheader-nav">
+    <div class="col-xs-3 about">
+        <p>
+            {% if app.user.theword is not null %}
+                {{ app.user.theword|truncate(200) }}
+            {% else %}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi consequatur distinctio dolor, est expedita fuga laudantium maiores, nesciunt quas sed sint veritatis voluptatum. Accusantium eaque fuga harum nostrum odit?
+            {% endif %}
+        </p>
+    </div>
+    <div class="col-xs-9 border-active-cote">
+        <div class="row flex-container">
+            {% if relationToPropose %}
+                {% for r in relationToPropose %}
+                    {% if loop.index <= 3 %}
+                        {% if loop.index == 1 %} {% set placement = 'left'%} {% endif %}
+                        {% if loop.index == 2 %} {% set placement = 'top' %} {% endif %}
+                        {% if loop.index == 3 %} {% set placement = 'right'%} {% endif %}
+                        {% set picture = 'uploads/user/avatar/'~r.avatar.path %}
+                        <div class="col-xs-2 div-no-padding">
+                            <a href="{{ path('wishters_user_show_user_profil',{'user': r.id}) }}"> <img src="{{ picture|imagine_filter('sh_avatar') }}" alt="Proposition" class="img-responsive" data-toggle="tooltip" data-placement="{{ placement }}" data-original-title="{{ r.username }}"/></a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <div class="col-xs-2 div-no-padding ">
+                <div class="flex-item">
+                    <a href="{{ app.user.googleplus|socialNetworkUrl }}">
+                    <i class="fa fa-google-plus fa-2x"></i>
+                    <p>Google+</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-2 div-no-padding">
+                <div class="flex-item">
+                    <a href="{{ app.user.twitter|socialNetworkUrl }}">
+                    <i class="fa fa-twitter fa-2x"></i>
+                    <p>Twitter</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-2 div-no-padding ">
+                <div class="flex-item">
+                    <a href="{{ app.user.facebook|socialNetworkUrl }}">
+                        <i class="fa fa-facebook fa-2x"></i>
+                        <p>Facebook</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row flex-container">
+            {% if relationToPropose %}
+                {% for r in relationToPropose %}
+                    {% if (loop.index >= 4 ) and (loop.index <= 6) %}
+                        {% set picture = 'uploads/user/avatar/'~r.avatar.path %}
+                        {% if loop.index == 4 %} {% set placement = 'left' %} {% endif %}
+                        {% if loop.index == 5 %} {% set placement = 'bottom' %} {% endif %}
+                        {% if loop.index == 6 %} {% set placement = 'right' %} {% endif %}
+                        <div class="col-xs-2 div-no-padding">
+                            <a href="{{ path('wishters_user_show_user_profil',{'user': r.id}) }}"><img src="{{ picture|imagine_filter('sh_avatar') }}" alt="Proposition" class="img-responsive" data-toggle="tooltip" data-placement="{{ placement }}" data-original-title="{{ r.username }}"/></a>
+                        </div>
+                        {% if (relationToPropose|length() < 6) and (loop.index == 6) %}
+                            {% set picture = 'uploads/user/avatar/'~app.user.avatar.path %}
+                            <div class="col-xs-2 div-no-padding text-center">
+                                <i class="fa fa-refresh fa-3x"></i>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            <div class="col-xs-2 div-no-padding">
+                <div class="flex-item">
+                    <i class="fa fa-toggle-on fa-2x"></i>
+                    <p>Alerte</p>
+                </div>
+            </div>
+            <div class="col-xs-2 div-no-padding ">
+                <div class="flex-item">
+                    <a href="#" data-toggle="modal" data-target="#modalAddAnnonce" id="modalAddAnnonceShow">
+                    <i class="fa fa-wifi fa-2x"></i>
+                    <p>Annonce</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-2 div-no-padding ">
+                <div class="flex-item">
+                    <a href="#" data-toggle="modal" data-target="#modalBlog" id="modalAddBlogShow">
+                    <i class="fa fa-comment fa-2x"></i>
+                    <p>Message</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

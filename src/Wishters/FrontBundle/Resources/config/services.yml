@@ -1,0 +1,73 @@
+parameters:
+    form.form:              Symfony\Component\Form\Form
+    annonce_manager.class:  Wishters\FrontBundle\Services\AnnonceManager
+    blog_manager.class:     Wishters\FrontBundle\Services\BlogManager
+    wishters_service.class: Wishters\FrontBundle\Services\WishtersService
+    blog_handler.class:     Wishters\FrontBundle\Form\Handler\BlogHandler
+    blog_type.class:        Wishters\FrontBundle\Form\Type\BlogType
+    annonce_handler.class:  Wishters\FrontBundle\Form\Handler\AnnonceHandler
+    annonce_type.class:     Wishters\FrontBundle\Form\Type\AnnonceType
+    wishters.twig.extension.class: Wishters\FrontBundle\Twig\TwigExtension
+    relation_manager.class: Wishters\FrontBundle\Services\RelationManager
+
+services:
+    wishters.twig.extension:
+        class: %wishters.twig.extension.class%
+        arguments: [@doctrine.orm.entity_manager, @security.token_storage]
+        tags:
+            - { name: twig.extension }
+
+    annonce_manager:
+        class: %annonce_manager.class%
+        arguments: [@doctrine.orm.entity_manager, @security.token_storage]
+
+    blog_manager:
+        class: %blog_manager.class%
+        arguments: [@request,@doctrine.orm.entity_manager, @security.token_storage, @service_container]
+        scope: request
+
+    wishters_service:
+        class: %wishters_service.class%
+        arguments: [@doctrine.orm.entity_manager, @security.token_storage]
+        scope: request
+
+    relation_manager:
+        class: %relation_manager.class%
+        arguments: [@doctrine.orm.entity_manager, @security.token_storage]
+
+    blog_handler:
+        class: %blog_handler.class%
+        arguments: [@blog_form, @request, @doctrine.orm.entity_manager, @security.token_storage]
+        scope: request
+
+    blog_form:
+        factory_service: form.factory
+        factory_method:  createNamed
+        class: %form.form%
+        arguments:
+            - blog
+            - blog_form
+
+    blog_type:
+        class: %blog_type.class%
+        tags:
+            - { name: form.type, alias: blog_form }
+
+    annonce_handler:
+        class: %annonce_handler.class%
+        arguments: [@annonce_form, @request, @doctrine.orm.entity_manager, @security.token_storage]
+        scope: request
+
+    annonce_form:
+        factory_service: form.factory
+        factory_method: createNamed
+        class: %form.form%
+        arguments:
+            - annonce
+            - front_annonce
+
+    annonce_type:
+        class: %annonce_type.class%
+        tags:
+            - { name: form.type, alias: front_annonce }
+

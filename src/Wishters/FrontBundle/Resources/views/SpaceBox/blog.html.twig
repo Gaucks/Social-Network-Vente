@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+
+{% block menu %}
+    {% include '@WishtersFront/Menu/menu_user.html.twig' %}
+{% endblock %}
+ {% block subheader %}
+     {% include ('@WishtersFront/Template/subheader.html.twig') %}
+ {% endblock %}
+{% block body %}
+    {% include 'WishtersFrontBundle:SpaceBox:blog_content.html.twig' %}
+{% endblock %}

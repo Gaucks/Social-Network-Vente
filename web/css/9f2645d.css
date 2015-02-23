@@ -1,0 +1,82 @@
+.row-annonce{
+    margin: 50px auto;
+}
+.annonce-img > img{
+    margin: 0 auto;
+}
+.annonce-container {
+    padding: 20px 15px;
+}
+.annonce-content{
+    padding-bottom: 20px;
+    border-bottom: 1px solid #cccccc;
+}
+.annonce-content h3{
+    color: #6DB18D;
+    text-transform: lowercase;
+    margin: 0 0 5px;
+}
+.annonce-content h3::first-letter,p::first-letter{
+    text-transform: capitalize;
+    margin-top: 0;
+}
+.annonce-content p{
+    color: #252525;
+    text-transform: lowercase;
+}
+.annonce-content .date{
+    color: #58585a;
+    font-size: 0.9em;
+}
+.annonce-options-container {
+    background: #6DB18D;
+    position: fixed;
+    border: 1px solid #629e7e;
+    bottom: 0px;
+    padding: 10px;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 1px -1px 3px #ccc;
+}
+.annonce-options-container button.btn-propose{
+    background: #ffffff;
+    font-weight: 600;
+    color: #5E5244;
+    border: 1px solid #ccc;
+}
+.annonce-options-container button.btn-propose:hover{
+    color: #6DB18D;
+    background: #FFFFFF;
+}
+
+.annonce-comment-box{
+    background: #f5f5f5;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    margin: -20px 0 0 0;
+}
+.annonce-comment-content ul.list-group li.list-group-item{
+    overflow: hidden;
+}
+.annonce-comment-content img{
+    float: left;
+    height: 40px;
+    width: 40px;
+    margin: -10px 10px -10px -15px ;
+}
+
+.addAnnonce{
+}
+.addAnnonce .row, .editAnnonce .row{
+    margin-bottom: 10px;
+}
+.addAnnonce .form-control{
+    background: #f5f5f5;
+}
+.addAnnonce textarea.form-control,
+.editAnnonce textarea.form-control{
+    height: 100px;
+    padding: 10px;
+}
+
+/*Suppression d'annonce*/
+.annonce-to-remove h3{ margin-top: 0; }

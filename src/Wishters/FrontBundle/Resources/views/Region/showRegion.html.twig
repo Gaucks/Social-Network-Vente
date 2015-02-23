@@ -1,0 +1,13 @@
+{% extends '::base.html.twig' %}
+
+{% block subheader %}
+    {% include '@WishtersFront/SubheaderTemplate/showRegion_SH.html.twig' %}
+{% endblock %}
+
+{% block menu %}
+    {% include 'WishtersFrontBundle:Menu:menu_region.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    {% include '@WishtersFront/Region/showRegion_content.html.twig' %}
+{% endblock %}

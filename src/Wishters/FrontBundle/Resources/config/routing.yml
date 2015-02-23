@@ -1,0 +1,39 @@
+wishters_front_homepage:
+    path:     /
+    defaults: { _controller: WishtersFrontBundle:Default:index }
+
+wishters_front_welcome:
+    path:     /welcome
+    defaults: { _controller: WishtersFrontBundle:Default:welcome }
+
+wishters_front_findmyregion:
+    path:     /find-my-region
+    defaults: { _controller: WishtersFrontBundle:Default:findMyRegion }
+
+wishter_front_region_show:
+    path:     /region/{region}
+    defaults: { _controller: WishtersFrontBundle:Region:showRegion, region: toute-la-france }
+
+wishter_front_user_spacebox:
+    path:     /spacebox
+    defaults: { _controller: WishtersFrontBundle:SpaceBox:index }
+
+wishters_front_blog_add:
+    path:     /add-blog-message
+    defaults: { _controller: WishtersFrontBundle:Blog:add }
+
+wishter_front_blog_add_traitement:
+    path:     /add-blog-message-traitement
+    defaults: { _controller: WishtersFrontBundle:Blog:addTraitement }
+
+wishters_front_annonce:
+    path:     /add-blog-message
+    defaults: { _controller: WishtersFrontBundle:Blog:index }
+
+wishters_front_blog_resume:
+    path:   /blog/resume
+    defaults: { _controller: WishtersFrontBundle:Blog:resume }
+
+wishters_ajax_search:
+    path: /ajax-search/{search}
+    defaults: { _controller: WishtersFrontBundle:Annonce:ajaxSearch }

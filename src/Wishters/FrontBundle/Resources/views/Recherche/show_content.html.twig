@@ -1,0 +1,56 @@
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li><a href="#">Recherche</a></li>
+    <li class="active">{{ recherche }}</li>
+</ul>
+
+<div class="flux-container">
+    <ul class="list-group flux-region">
+        {% if annonces %}
+            {% for a in annonces %}
+                {% if a.negoce == true %}
+                    {% set active = 'active' %}
+                {% else %}
+                    {% set active = 'inactive' %}
+                {% endif %}
+                {% if a.urgent == true %}
+                    {% set active_urgent = 'active' %}
+                {% else %}
+                    {% set active_urgent = 'inactive' %}
+                {% endif %}
+                <li class="list-group-item row">
+                    <div class="col-xs-2 text-center">
+                        {% if a.picture is not empty %}
+                            {% set picture = 'uploads/annonce/'~a.picture.path  %}
+                            <img src="{{ picture | imagine_filter('my_annonce_region_picture') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        {% else %}
+                            <img src="{{ 'bundles/wishtersfront/images/actu/telechargement.jpeg' | imagine_filter('my_annonce_region_picture') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        {% endif %}
+                        <p class="note">Le {{ a.date|date('d/y à h:m') }}</p>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="flux-content">
+                            <h4>
+                                <a href="#" class="active">{{ a.user.username }}</a>  demande : <a href="{{ path('wishters_front_annonce_show', {'id': a.id}) }}" class="active">{{ a.title|lower|truncate(50) }}</a></h4>
+                            <p class="describ"><a href="{{ path('wishters_front_annonce_show', {'id' : a.id}) }}" class="inherit">{{ a.content|truncate(150) }}</a></p>
+                            <a href="#" class="choice">Proposer un produit </a> |
+                            <a href="#" class="choice"> Ajouter à ma liste </a> |
+                            <a href="#" class="choice"> <i class="fa fa-camera {{ active }}"></i></a> |
+                            <a href="#" class="choice"> <i class="fa fa-legal {{ active_urgent }}"></i></a> |
+                            <a href="{{ path('wishter_front_region_show', {'region' : a.region.slug}) }}" class="request">{{ a.region.nom }} </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 flux-options">
+                        <span class="strong">{{ a.price }}€</span>
+                    </div>
+                </li>
+            {% endfor %}
+        {% else %}
+            <div class="text-center">
+                <h4>Oups,</h4>
+                <p>Il n'y a pas encore d'annonce qui corresponde à votre demande, essayer avec d'autres termes peut être.</p>
+                <p>Bon faudra quand meme personnaliser cette page.</p>
+            </div>
+        {% endif %}
+    </ul>
+</div>

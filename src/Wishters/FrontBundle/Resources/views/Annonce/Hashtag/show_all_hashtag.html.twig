@@ -1,0 +1,6 @@
+{% extends 'WishtersFrontBundle:Annonce:layout.html.twig' %}
+{% block menu %}{% include '@WishtersFront/Menu/menu_allHastag.html.twig' %}{% endblock %}
+{% block subheader %}{% include'WishtersFrontBundle:SubheaderTemplate:show_hashtag_SH.html.twig' %}{% endblock %}
+{% block body %}
+    {% include 'WishtersFrontBundle:Annonce/Hashtag:show_all_hashtag_content.html.twig' %}
+{% endblock %}

@@ -1,0 +1,63 @@
+<div class="flux-container">
+    <ul class="list-group flux-region">
+        {% if annonces %}
+            {% for a in annonces %}
+
+                <li class="list-group-item row">
+                    <div class="col-xs-2 text-center">
+                        {% if a.picture is not empty %}
+                            {% set picture = 'uploads/annonce/'~a.picture.path  %}
+                            <img src="{{ picture | imagine_filter('my_annonce_region_picture') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        {% else %}
+                            <img src="{{ 'bundles/wishtersfront/images/actu/telechargement.jpeg' | imagine_filter('my_annonce_region_picture') }}" alt="Avatar" class="img-responsive img-rounded"/>
+                        {% endif %}
+
+                        <p class="note">Le {{ a.date|date('d/y à h:m') }}</p>
+
+                    </div>
+                    <div class="col-xs-8 div-no-padding">
+                        <div class="flux-content">
+                            <h4>
+                                <a href="{{ path('wishters_user_show_user_profil', {'user': a.user.id }) }}" class="active">{{ a.user.username }}</a>  demande <a href="{{ path('wishters_front_annonce_show', {'id': a.id}) }}" class="active">{{ a.title }}</a></h4>
+                            <p class="describ"><a href="{{ path('wishters_front_annonce_show', {'id' : a.id}) }}" class="inherit">{{ a.content|truncate(150) }}</a></p>
+
+                            {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+                                {% if a.user == app.user %}
+                                    <div class="dropdown pull-left blog_actions">
+                                        <span id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">Actions <i class="caret"></i></span>
+
+                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('wishters_front_annonce_edit', {'id': a.id} ) }}">Modifier mon annonce </a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path('wishters_front_annonce_remove', {'id': a.id}) }}">Supprimer cette annonce</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Non implenté</a></li>
+                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Non implenté</a></li>
+                                        </ul>
+                                    </div>
+                                {% else %}
+                                    <a href="#" class="choice">Proposer un produit </a> |
+                                    <a href="{{ path('wishters_front_relation_add', {'id' : a.user.id }) }}" class="choice"> S'abonner </a> |
+                                {% endif %}
+
+                            {% else %}
+                                <a href="#" class="choice" data-toggle="modal" data-target="#modalAnonymousProductPropose">Proposer un produit </a> |
+                                <a href="#" class="choice" data-toggle="modal" data-target="#modalAnonymousRelation"> S'abonner </a> |
+                            {% endif %}
+
+                            <a href="#" class="choice"> <i class="fa fa-bolt {{ a.urgent|validate_option }}"></i></a> |
+                            <a href="#" class="choice"> <i class="fa fa-legal {{ a.negoce|validate_option }}"></i></a>|
+                            <a href="{{ path('wishters_front_annonce_hashtag_show', {'hashtag' : a.hashtag})}}" class="request">{{ a.hashtag|check_diese }} </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 flux-options div-no-padding">
+                        <span class="strong">{{ a.price }}€</span>
+                    </div>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>
+{# display navigation #}
+<div class="navigation text-center">
+    {{ knp_pagination_render(annonces) }}
+</div>

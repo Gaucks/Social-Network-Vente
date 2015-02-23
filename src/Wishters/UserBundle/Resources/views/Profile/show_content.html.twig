@@ -1,0 +1,79 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li>Profile</li>
+    <li class="active">{{ user.username }}</li>
+</ul>
+
+<div class="col-xs-12">
+    <div class="row">
+        <div class="col-lg-8">
+            <h4 class="text-salmon">Un peu plus d'informations</h4>
+            <p>{{ user.email }}</p>
+            <p>{{ user.region.nom }}</p> {# Mettre la ville plutot #}
+            <p>Derniere connexion le {{ user.lastLogin|date('d M y à h:m') }} min</p>
+
+            {% if user.facebook is defined %}
+            <p><a href="{{ user.facebook }}" target="_blank"><i class="fa fa-facebook-square"></i> Facebook</a></p>
+            {% endif %}
+
+            {% if user.twitter is defined %}
+            <p><a href="{{ user.twitter }}" target="_blank"><i class="fa fa-twitter-square"></i> Twitter</a></p>
+            {% endif %}
+
+            {% if user.googleplus is defined %}
+            <p><a href="{{ user.googleplus }}" target="_blank"><i class="fa fa-google-plus-square"></i> Google+</a></p>
+            {% endif %}
+        </div>
+        <div class="col-lg-4">{% set picture = 'uploads/user/avatar/'~user.avatar.path %}
+            <img src="{{ picture |imagine_filter('my_carte') }}" alt="Avatar" class="img-rounded img-responsive no-margin"/>
+        </div>
+    </div>
+
+    <hr/>
+    <div class="row">
+        <div class="col-lg-6">
+            <blockquote>
+                <p>
+                    {% if user.theword is not null %}
+                        {{ user.theword|truncate(200) }}
+                    {% else %}
+                         {{ user.username }} n'à rien de plus à ajouter...
+                    {% endif %}
+                </p>
+                <small>Le mot de <cite title="Source Title">{{ user.username }}</cite></small>
+            </blockquote>
+        </div>
+        <div class="col-lg-6">
+            <ul class="list-group">
+                {% for l in lastFive %}
+                <li class="list-group-item">
+                    <span class="badge">14</span>
+                    {{ l.title }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <hr/>
+    <div class="text-center">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+            {% if (app.user) and (app.user.id == user.id) %}
+                <a href="{{ path('fos_user_profile_edit') }}"><button type="button" class="btn btn-success btn-radius-30"><i class="fa fa-edit"></i> Modifier mon profil</button></a>
+            {% else %}
+                {% if user.id|is_follow %}
+                <button type="button" class="btn btn-info btn-radius-30 remove-abonnement-btn" rel="{{ user.id }}"><i class="fa fa-wifi"></i> Abonné </button>
+                {% else %}
+                    <button type="button" class="btn btn-success btn-radius-30 add-abonnement-btn" rel="{{ user.id }}"><i class="fa fa-wifi"></i> S'abonner </button>
+                {% endif %}
+                <a href="#"><button type="button" class="btn btn-default btn-radius-30"><i class="fa fa-comment"></i> Message</button></a>
+            {% endif %}
+
+        {% else %}
+            <a href="#" data-toggle="modal" data-target="#modalAnonymousRelation"><button type="button" class="btn btn-success btn-radius-30"><i class="fa fa-wifi"></i> S'abonner</button></a>
+            <a href="#" ><button type="button" class="btn btn-default btn-radius-30"><i class="fa fa-comment"></i> Envoyer un message</button></a>
+        {% endif %}
+    </div>
+
+</div>

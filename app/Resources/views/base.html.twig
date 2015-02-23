@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Wisters en création!{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets filter='cssrewrite'
+        'bundles/wishtersfront/css/bootstrap.min.css'
+        'bundles/wishtersfront/css/font-awesome.min.css'
+        'bundles/wishtersfront/css/styles.css'
+        'bundles/wishtersfront/css/menu.css'
+        'bundles/wishtersfront/css/propose.css'
+        'bundles/wishtersfront/css/blog.css'
+        'bundles/wishtersfront/css/annonce.css'
+        'bundles/wishtersuser/css/user.css'
+        'bundles/wishtersfront/css/jasny-bootstrap.min.css'
+        %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+<div class="container-fluid wrap">
+
+    <div class="row wrap">
+        <div class="col-md-2 col-xs-12 wish-menu">
+            <div class="row wish-header wish-title">
+                <h1><a href="{{ path('wishters_front_homepage') }}" id="site_title">Wishters</a></h1>
+            </div>
+            <div class="row" role="menu">
+                <div class="menu">
+                    {% block menu %}
+                        {% include '@WishtersFront/Template/menu.html.twig' %}
+                    {% endblock menu %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-xs-12" id="site-content">
+            {% block header %}
+                <div class="row wish-header">
+                    {% include '@WishtersFront/Template/header.html.twig' %}
+                </div>
+            {% endblock %}
+
+            <div class="row wish-subheader">
+                {% block subheader %}{% endblock %}
+            </div>
+
+            <div class="row">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+
+        <div class="col-md-2 col-xs-12 wish-propose">
+            {% include '@WishtersFront/Template/propose.html.twig' %}
+        </div>
+    </div>
+
+</div>
+
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    {% include "@WishtersFront/ModalBox/modal_add_annonce.html.twig" %}
+    {% include '@WishtersFront/ModalBox/modal_add_blog.html.twig' %}
+{% endif %}
+
+{% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    {% include ('@WishtersFront/ModalBox/Anonymous/modal_add_annonce.html.twig') %}
+    {% include ('WishtersFrontBundle:ModalBox/FOS:modal_signin.html.twig') %}
+    {% include ('WishtersFrontBundle:ModalBox/Anonymous:modal_relation.html.twig') %}
+    {% include ('WishtersFrontBundle:ModalBox/Anonymous:modal_product_propose.html.twig') %}
+
+{% endif %}
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="flash-success">
+        <i class="fa fa-check"></i>  {{ flashMessage }}
+    </div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <div class="flash-error">
+        <i class="fa fa-warning"></i>  {{ flashMessage }}
+    </div>
+{% endfor %}
+
+{% block javascripts %}
+    {% javascripts
+    'bundles/wishtersfront/js/jquery-2.1.3.min.js'
+    'bundles/wishtersfront/js/bootstrap.min.js'
+    'bundles/wishtersfront/js/jasny-bootstrap.min.js'
+    'bundles/wishtersfront/js/jasny-bootstrap.js'
+    'bundles/wishtersfront/js/jquery.tablesorter.min.js'
+    'bundles/wishtersfront/js/jquery.validate.min.js'
+    'bundles/wishtersfront/js/jquery-validate.bootstrap-tooltip.min.js'
+    'bundles/wishtersfront/js/modal.js'
+    'bundles/wishtersfront/js/wishters.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>

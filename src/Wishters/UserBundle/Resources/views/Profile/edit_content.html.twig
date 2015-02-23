@@ -1,0 +1,89 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li><a href="{{ path('wishters_front_annonce_hashtag_all') }}">Administration</a></li>
+    <li class="active">Modification de mon profil</li>
+</ul>
+
+<div class="fos-user-edit-profile">
+    <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
+
+        <div class="row top-edit-profil">
+
+            <div class="col-lg-6 text-center">
+                <div class="fileinput fileinput-new" data-provides="fileinput" id="fos-user-edit-avatar">
+                    <div class="fileinput-new thumbnail" >
+                        {% set picture = 'uploads/user/avatar/'~app.user.avatar.path %}
+                        <img data-src="holder.js/100%x100%" src="{{ picture | imagine_filter('my_carte') }}" class="avatar">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                    <div class="text-center hidden" id="change-avatar-btn">
+                        <span class="btn btn-default btn-file btn-sm"><span class="fileinput-new"><i class="fa fa-folder-open-o"></i> Modifier mon avatar</span><span class="fileinput-exists">Change</span>{{ form_widget(form.avatar.file) }}</span>
+                        <a href="#" class="btn btn-default fileinput-exists btn-sm" data-dismiss="fileinput">Effacer</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    {{ form_label(form.username) }}
+                    {{ form_widget(form.username, {'attr':{'class': 'form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr':{'class': 'form-control'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.region) }}
+                    {{ form_widget(form.region, {'attr':{'class': 'form-control'} }) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <i class="fa fa-facebook"></i>{{ form_label(form.facebook) }}
+                    {{ form_widget(form.facebook, {'attr':{'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    <i class="fa fa-twitter"></i>
+                    {{ form_label(form.twitter) }}
+                    {{ form_widget(form.twitter, {'attr':{'class': 'form-control'} }) }}
+                </div>
+
+                <div class="form-group">
+                    <i class="fa fa-google-plus"></i>
+                    {{ form_label(form.googleplus) }}
+                    {{ form_widget(form.googleplus, {'attr':{'class': 'form-control'} }) }}
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    {{ form_label(form.theword) }}
+                    {{ form_widget(form.theword, {'attr':{'class': 'form-control', 'placeholder' : 'Pourquoi pas une petite biographie ?'}}) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    {{ form_label(form.current_password) }}
+                    {{ form_widget(form.current_password, {'attr':{'class': 'form-control'} }) }}
+                </div>
+            </div>
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <button type="submit" class="btn btn-success btn-radius-30"><i class="fa fa-check-circle"></i> Mettre à jour mon profil</button>
+            </div>
+        </div>
+    </form>
+</div>

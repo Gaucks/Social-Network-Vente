@@ -1,0 +1,29 @@
+{% extends "WishtersUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="register-header">
+            <h1>Wishters</h1>
+        </div>
+
+        <div class="register-body">
+            <div class="col-xs-6 col-xs-offset-3 text-center ">
+                <h3 class="confirmed">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h3>
+                {% if app.session is not empty %}
+                    {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                    {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+                {% endif %}
+                <hr/>
+                <a href="{{ path('wishter_front_user_spacebox') }}" class="already"><i class="fa fa-home"></i> Débuter sur Wishters maintenant</a>
+            </div>
+
+
+        <div class="clearfix"></div>
+        </div>
+    
+    </div>
+{% endblock body %}

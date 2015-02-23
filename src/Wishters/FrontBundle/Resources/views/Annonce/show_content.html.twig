@@ -1,0 +1,88 @@
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li><a href="{{ path('wishter_front_region_show') }}">{{ annonce.region.nom }}</a></li>
+    <li><a href="{{ path('wishters_user_show_user_profil', {'user': annonce.user.id }) }}">{{ annonce.user.username }}</a></li>
+    <li class="active">{{ annonce.title }}</li>
+</ul>
+
+<div class="row annonce-container">
+
+    <div class="annonce-img col-xs-5 text-center">
+        {% if annonce.picture is not empty %}
+            {% set picture = 'uploads/annonce/'~annonce.picture.path  %}
+            <img src="{{ picture | imagine_filter('img_normal') }}" alt="Avatar" class="img-responsive img-rounded"/>
+        {% else %}
+            <img src="{{ 'bundles/wishtersfront/images/actu/telechargement.jpeg' | imagine_filter('img_normal') }}" alt="Avatar" class="img-responsive img-rounded"/>
+        {% endif %}
+    </div>
+
+    <div class="annonce-content col-xs-7">
+        <h3 class="title">{{ annonce.title }}</h3>
+        <p class="date">Publié le {{ annonce.date|date('d M y à h\\hm') }} | <strong class="salmon">{% if annonce.negoce == true %} Négociable {% endif %} - {% if annonce.urgent == true %} Urgent {% endif %}</strong></p>
+        <p>{{ annonce.content|nl2br }}
+        </p>
+    </div>
+
+</div>
+    <hr/>
+<div class="row annonce-container annonce-comment-box">
+    <h4>Vous pourriez les interesser:</h4>
+    <div class="annonce-comment-content col-xs-6">
+        <div class="list-group">
+            <a href="#" class="list-group-item">
+                <span class="badge badge-success">14</span>
+                Cras justo odio
+                <img src="{{ 'bundles/wishtersfront/images/actu/symfony_black_014.jpg'|imagine_filter('my_propose_avatar') }}" alt="#"/>
+            </a>
+            <a href="#"class="list-group-item">
+                <span class="badge badge-salmon">22€</span>
+                Dapibus ac facilisis in
+                <img src="{{ 'bundles/wishtersfront/images/avatars/user-6.jpg'|imagine_filter('my_propose_avatar') }}" alt="#"/>
+            </a>
+
+            <a href="#" class="list-group-item">
+                <span class="badge badge-salmon">1000€</span>
+                Morbi leo risus
+                <img src="{{ 'bundles/wishtersfront/images/avatars/user-2.jpg'|imagine_filter('my_propose_avatar') }}" alt="#"/>
+            </a>
+        </div>
+    </div>
+    <div class="annonce-comment-content col-xs-6">
+        <div class="list-group">
+            <a href="#" class="list-group-item">
+                <span class="badge badge-success">14</span>
+                Cras justo odio
+                <img src="{{ 'bundles/wishtersfront/images/avatars/user-3.jpg'|imagine_filter('my_propose_avatar') }}" alt="#"/>
+            </a>
+            <a href="#"class="list-group-item">
+                <span class="badge badge-salmon">22€</span>
+                Dapibus ac facilisis in
+                <img src="{{ 'bundles/wishtersfront/images/avatars/user-7.jpg'|imagine_filter('my_propose_avatar') }}" alt="#"/>
+            </a>
+
+            <a href="#" class="list-group-item">
+                <span class="badge badge-salmon">1000€</span>
+                Morbi leo risus
+                <img src="{{ 'bundles/wishtersfront/images/actu/symfony_black_014.jpg'|imagine_filter('my_propose_avatar') }}" alt="#"/>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-8 annonce-options-container">
+    {% if app.user == annonce.user %}
+    <div class="col-xs-6 ">
+        <a href="{{ path('wishters_front_annonce_edit', {'id' : annonce.id} ) }}"><button class="btn btn-propose btn-block"><i class="fa fa-edit"></i> Modifier cette annonce</button></a>
+    </div>
+    <div class="col-xs-6">
+        <a href="{{ path('wishters_front_annonce_remove', {'id': annonce.id}) }}"><button class="btn btn-propose btn-block "><i class="fa fa-eraser"></i> Supprimer cette annonce</button></a>
+    </div>
+    {% else %}
+    <div class="col-xs-6 ">
+        <button class="btn btn-propose btn-block"><i class="fa fa-save"></i> Sauvegarder</button>
+    </div>
+    <div class="col-xs-6">
+        <button class="btn btn-propose btn-block "><i class="fa fa-euro"></i> J'ai ça !</button>
+    </div>
+    {% endif %}
+</div>

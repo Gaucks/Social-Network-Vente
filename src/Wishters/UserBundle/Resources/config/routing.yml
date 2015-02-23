@@ -1,0 +1,9 @@
+wishters_user_avatar_edit:
+    path: /user/profil/edit-avatar
+    defaults: { _controller: WishtersUserBundle:Avatar:edit }
+
+wishters_user_show_user_profil:
+    path: /user/show/{user}
+    defaults: { _controller: WishtersUserBundle:Profile:showProfil }
+    requirements:
+        id: \d+

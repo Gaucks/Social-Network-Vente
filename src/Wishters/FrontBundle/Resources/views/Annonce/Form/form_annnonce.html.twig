@@ -1,0 +1,95 @@
+<div class="modal-body form">
+    <div class="row">
+        <div class="col-xs-5 text-center">
+            {% if form_errors(form.picture.file)|length > 0 %}{% set errors_picture = 'has-error' %}{% else %} {% set errors_picture = NULL %}{% endif %}
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+                <div class="fileinput-new thumbnail {{ errors_picture }}" style="width: 200px; height: 150px;">
+                    {% if annonce_picture is defined %}
+                        <img data-src="holder.js/100%x100%" alt="100%x100%" src="{{ asset(annonce_picture) }}" style="height: 100%; width: 100%; display: block;">
+                    {% else %}
+                        <img data-src="holder.js/100%x100%" alt="100%x100%" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTkwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9Ijk1IiB5PSI3MCIgc3R5bGU9ImZpbGw6I2FhYTtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtZmFtaWx5OkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjE5MHgxNDA8L3RleHQ+PC9zdmc+" style="height: 100%; width: 100%; display: block;">
+                    {% endif %}
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+                <div>
+                    <span class="btn btn-default btn-file btn-sm"><span class="fileinput-new"><i class="fa fa-folder-open-o"></i> Ajouter une image</span><span class="fileinput-exists">Change</span>{{ form_widget(form.picture.file) }}</span>
+                    <a href="#" class="btn btn-default fileinput-exists btn-sm" data-dismiss="fileinput">Effacer</a>
+                </div>
+            </div>
+            {{ form_errors(form.picture.file)  }}
+            <p class="note text-salmon">* Une image favorisera la visibilité de votre annonce.</p>
+        </div>
+
+
+        <div class="col-xs-7">
+
+            <div class="row">
+                <div class="form-group">
+                    {% if form_errors(form.title)|length > 0 %}{% set errors_title = 'has-error' %}{% else %} {% set errors_title = NULL %}{% endif %}
+
+                    {{ form_label(form.title) }}
+                    <div class="input-group input-group-sm {{ errors_title }}">
+                        <span class="input-group-addon">@</span>
+                        {{ form_widget(form.title, { 'attr': {'class': 'form-control','placeholder':'Votre titre'}}) }}
+                        {% if(errors_title) %}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group">
+                    {% if form_errors(form.hashtag)|length > 0 %}{% set errors_hashtag = 'has-error' %}{% else %} {% set errors_hashtag = NULL %}{% endif %}
+                    {{ form_label(form.hashtag) }}
+                    <div class="input-group input-group-sm {{ errors_hashtag }}">
+                        <span class="input-group-addon">#</span>
+                        {{ form_widget(form.hashtag) }}
+                        {% if(errors_hashtag) %}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        {% endif %}
+                    </div>
+                    {{ form_errors(form.hashtag) }}
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-4 div-no-padding">
+                    <div class="checkbox">
+                        <label class="strong">{{ form_widget(form.negoce, { 'attr': {'class': ''}}) }} Négociable</label>
+                    </div>
+                    <div class="checkbox div-no-padding">
+                        <label class="strong">{{ form_widget(form.urgent, { 'attr': {'class': ''}}) }} Urgent </label>
+                    </div>
+                </div>
+
+                <div class="col-xs-8 div-no-padd-right">
+                    {% if form_errors(form.price)|length > 0 %}{% set errors_price = 'has-error' %}{% else %} {% set errors_price = NULL %}{% endif %}
+                    {{ form_label(form.price) }}
+                    <div class="input-group input-group-sm {{ errors_price }}">
+                        <span class="input-group-addon">€</span>
+                        {{ form_widget(form.price, { 'attr': {'class': 'form-control','placeholder':'Le budget'}}) }}
+                        {% if(errors_price) %}
+                            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+                        {% endif %}
+                    </div>
+                    {{ form_errors(form.price) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% if form_errors(form.content)|length > 0 %}{% set errors_content = 'has-error' %}{% else %} {% set errors_content = NULL %}{% endif %}
+
+        {{ form_label(form.content) }}
+        <div class="{{ errors_content }}">
+            {{ form_widget(form.content) }}
+            {% if(errors_content) %}
+                <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            {% endif %}
+        </div>
+        {{ form_errors(form.content) }}
+    </div>
+</div>
+{{ form_rest(form) }}

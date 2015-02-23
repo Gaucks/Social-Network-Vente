@@ -1,0 +1,110 @@
+body, html, .wlc-wrap{ height: 100% }
+
+body{
+    font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: #666666;
+    font-size: 12px;
+}
+h1{ font-size: 1.5em; color: #ffffff}
+div{ box-sizing: border-box; }
+
+
+.note{
+    margin-top: 7px;
+    color: #666666;
+    font-size: 11px;
+    font-style: italic;
+}
+.btn-success {
+    color: #fff;
+    background-color: #6DB18D;
+    border-color: #4cae4c;
+}
+.btn-success:hover{
+    background-color: #629e7e;
+}
+.btn-salmon{
+    background-color: salmon;
+    border-color: darksalmon;
+    color: #FFFFFF;
+}
+.btn-salmon:hover{
+    background-color: salmon;
+    border-color: darksalmon;
+}
+.form-control{
+    border-bottom: 0;
+    border-radius: 0;
+    height: 50px;
+}
+.form-control:first-child{
+    border-bottom: 0;
+}
+.div-no-padding{
+    padding: 0;
+}
+
+.wlc-wrap{
+    position: relative;
+}
+
+.wlc-header button{
+    margin-top: 12px;
+}
+.wlc-header{
+    background-color: #6DB18D;
+    border-bottom: 2px solid #333;
+    padding-left: 20px;
+}
+.wlc-header h1{
+    margin: 0;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 2px;
+    line-height: 2.5em;
+}
+.wlc-content{
+}
+
+.wlc-signin {
+    margin-top: 100px;
+    height: 100px;
+    overflow: hidden;
+    background: #cccccc;
+    -webkit-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 20px 0px rgba(0, 0, 0, 0.3);
+}
+.wlc-signin-fa{
+    background: #333;
+    padding: 0;
+    line-height: 2.2em;
+    font-size: 4em;
+    color: #ffffff;
+    text-align: center;
+}
+.wlc-signin-fa-signin{
+    background: #ffffff;
+    color: salmon;
+    border-top: 1px solid #ccc;
+}
+.wlc-content-ctt{
+    color: #5e5e5e;
+    text-align: center;
+}
+.wlc-content-choice{
+    background: #ecece4;
+    padding: 10px 0;
+    box-shadow: 1px 0px 1px #333;
+}
+
+.btn-fade{
+    background: #ffffff;
+    color: salmon;
+    margin-top: -10px;
+}
+.wlc-signin-fa-signin .fa{
+    font-size: 4em;
+    background: #ffffff;
+    color: salmon;
+
+}

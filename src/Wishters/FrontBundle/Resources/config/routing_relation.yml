@@ -1,0 +1,15 @@
+wishters_front_relation_add:
+    path: /add/{id}
+    defaults: { _controller: WishtersFrontBundle:Relation:Add }
+    requirements:
+        id: \d+
+
+wishters_front_relation_remove:
+    path: /remove/{id}
+    defaults: { _controller: WishtersFrontBundle:Relation:Remove}
+    requirements:
+        id: \d+
+
+wishters_front_relation_user_not_connected:
+    path: /not-connected
+    defaults: { _controller: WishtersFrontBundle:Relation:notConnected }

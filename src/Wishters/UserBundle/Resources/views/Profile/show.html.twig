@@ -1,0 +1,5 @@
+{% extends "WishtersUserBundle::layout_user.html.twig" %}
+
+{% block subheader %}{% include 'WishtersFrontBundle:SubheaderTemplate:showProfile_SH.html.twig' %} {% endblock %}
+{% block menu %}{% include 'WishtersFrontBundle:Menu:menu_show_profil.html.twig' %}{% endblock %}
+{% block body %}{% include "FOSUserBundle:Profile:show_content.html.twig" %}{% endblock %}

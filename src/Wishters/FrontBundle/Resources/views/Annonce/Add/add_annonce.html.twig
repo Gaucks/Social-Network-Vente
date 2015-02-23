@@ -1,0 +1,6 @@
+{% extends 'WishtersFrontBundle:Annonce:layout.html.twig' %}
+{% block menu %}{% include 'WishtersFrontBundle:Menu:menu_user.html.twig' %}{% endblock %}
+{% block subheader %}{% include 'WishtersFrontBundle:SubheaderTemplate:addAnnonce_SH.html.twig' %} {% endblock %}
+{% block body %}
+    {% include 'WishtersFrontBundle:Annonce/Add:add_annonce_content.html.twig' %}
+{% endblock %}

@@ -1,0 +1,20 @@
+<div class="row subheader-nav" id="subheader-header">
+    <div class="col-xs-10">
+
+        <div class="dropdown">
+            <h3 class="dropdown-toggle" type="button" id="dropdownMenuRegion" data-toggle="dropdown" aria-expanded="true">{{ region.nom }} <span class="caret"></span><i class="fa fa-arrow-circle-o-right pull-right"></i></h3>
+            <ul class="dropdown-menu list-inline" role="menu" aria-labelledby="dropdownMenuRegion1">
+                {% for r in regions %}
+                    <li role="presentation" class="list-region"><a role="menuitem" tabindex="-1" href="{{ path('wishter_front_region_show', {'region': r.slug }) }}">{{ r.nom }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+    <div class="col-xs-2 border-active-cote text-center">
+        <a href="#" data-toggle="modal" data-target="#modalAnonymousAddAnnonce">
+            <h3 class="more"><i class="fa fa-plus"></i></h3>
+            <span>Publier</span>
+        </a>
+    </div>
+</div>

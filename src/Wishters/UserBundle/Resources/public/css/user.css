@@ -1,0 +1,105 @@
+.anonym_body{
+    color: #FFFFFF;
+    border-top: 5px solid #6DB18D;
+    border-bottom: 5px solid #6DB18D;
+}
+.citation-title{
+    font-family: 'Pacifico', cursive;
+    margin: 50px 0;
+    font-size: 3em;
+}
+.fos-user{
+    color: #333333;
+}
+.fos-user-edit-profile{
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e3e3e3;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.fos-user-edit-profile label{
+    color:#919496;
+    font-weight: normal;
+}
+.fos-user-edit-profile .fa-check{
+    line-height: 80px;
+}
+a.already{
+    color: salmon;
+}
+a.go-home{
+}
+a.already:hover,a.go-home:hover {
+    text-decoration: underline;
+}
+.btn-radius-30{
+    border-radius: 30px;
+}
+.registration-conf{
+    padding-top: 100px;
+    text-align: center;
+}
+.registration-conf a{
+    font-size: 1.5em;
+}
+
+/* Register */
+.register-header{
+    background: #FFFFFF;
+    border-bottom: 1px solid #dddddd;
+    text-align: center;
+}
+.register-header h1{
+    font-size: 3em;
+    line-height: 3em;
+    margin-top: 0;
+    font-weight: 600;
+    color: #6DB18D;
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 2px;
+}
+.register-body{
+    padding: 30px 0;
+    background: #f5f5f5;
+    border-bottom: 1px solid #dddddd;
+    letter-spacing: 1px
+}
+.register-body h5{
+    color: #999999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.register-body h3.confirmed{
+    color: #999999;
+}
+.register-body label{
+    color: #999999;
+    font-weight: normal;
+}
+.register-body .form-control::-webkit-input-placeholder { color: #999; letter-spacing: 1px }
+.register-body input[type=submit]{
+    margin-top: 20px;
+}
+.fos-user-edit-profile .thumbnail{
+    margin-top: 30px;
+}
+.fos-user-edit-profile .thumbnail,
+.fos-user-edit-profile .avatar{
+    border-radius: 50%;
+    max-width: 200px;
+    max-height: 150px;
+}
+
+.fos-user-edit-profile textarea{
+    height: 180px;
+    width: 100%;
+    background: #F9F9F9;
+}
+
+.top-edit-profil{
+    margin-bottom: 20px;
+    padding-top: 15px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #ccc;
+}

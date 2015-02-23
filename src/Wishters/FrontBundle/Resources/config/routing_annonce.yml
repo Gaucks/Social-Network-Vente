@@ -1,0 +1,51 @@
+wishters_front_annonce_add:
+    path:     /add
+    defaults: { _controller: WishtersFrontBundle:Annonce:add }
+    requirements:
+        _method: GET
+
+wishters_front_annonce_add_default:
+    path: /add-annonce
+    defaults: { _controller: WishtersFrontBundle:Annonce:addDefault}
+
+wishters_front_annonce_add_traitement:
+    path: /add-traitement
+    defaults: { _controller: WishtersFrontBundle:Annonce:addTraitement}
+    requirements:
+        _method: POST
+
+wishters_front_annonce_edit:
+    path:     /edit/{id}
+    defaults: { _controller: WishtersFrontBundle:Annonce:edit }
+    requirements:
+        id: \d+
+
+wishters_front_annonce_remove:
+    path:     /remove/{id}
+    defaults: { _controller: WishtersFrontBundle:Annonce:remove }
+    requirements:
+        id: \d+
+
+wishters_front_annonce_remove_traitement:
+    path:     /remove-traitement/{id}
+    defaults: { _controller: WishtersFrontBundle:Annonce:removeTraitement }
+    requirements:
+        id: \d+
+
+wishters_front_annonce_show:
+    path:     /{id}
+    defaults: { _controller: WishtersFrontBundle:Annonce:show }
+    requirements:
+        id: \d+
+
+wishters_front_annonce_hashtag_all:
+    path:     /hashtags
+    defaults: { _controller: WishtersFrontBundle:Annonce:showAllHashtag }
+
+wishters_front_annonce_hashtag_show:
+    path:     /hashtag/{hashtag}
+    defaults: { _controller: WishtersFrontBundle:Annonce:showByHashtag }
+
+wishters_front_annonce_search_traitement:
+    path: /search
+    defaults: { _controller: WishtersFrontBundle:Annonce:searchTraitement }

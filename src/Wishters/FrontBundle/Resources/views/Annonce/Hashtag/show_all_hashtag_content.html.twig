@@ -1,0 +1,18 @@
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li><a href="{{ path('wishters_front_annonce_hashtag_all') }}">Hashtag</a></li>
+    <li class="active">{{ hashtag|check_diese }}</li>
+</ul>
+
+<div class="flux-container">
+        {% if hashtags %}
+            {% for h in hashtags %}
+                <div class="col-xs-12 col-md-4">
+                    <div class="well well-sm text-center">
+                    <h4><a href="{{ path('wishters_front_annonce_hashtag_show',{'hashtag': h.hashtag }) }}" class="active">{{ h.hashtag|check_diese }}</a> </h4>
+                        <p>Annonce: {{ h[1] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+</div>

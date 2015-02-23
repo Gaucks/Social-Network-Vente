@@ -1,0 +1,20 @@
+<div class="row subheader-nav" id="subheader-header">
+    <div class="col-xs-10">
+
+        <div class="dropdown">
+            <h3>{{ hashtag|check_diese }}<i class="fa fa-arrow-circle-o-right pull-right"></i></h3>
+        </div>
+
+    </div>
+    <div class="col-xs-2 border-active-cote text-center">
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% set target = 'modalAddAnnonce' %}
+        {% else %}
+        {% set target = 'modalAnonymousAddAnnonce' %}
+        {% endif %}
+        <a href="#" data-toggle="modal" data-target="#{{ target }}">
+            <h3 class="more"><i class="fa fa-plus"></i></h3>
+            <span>Publier</span>
+        </a>
+    </div>
+</div>

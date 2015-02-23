@@ -1,0 +1,7 @@
+<form action="{{ path('wishters_front_annonce_add_traitement') }}" {{ form_enctype(form) }} method="POST" id="formAddAnnonce">
+{% include '@WishtersFront/Annonce/Form/form_annnonce.html.twig' %}
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+        <button type="submit" class="btn btn-primary">Publier</button>
+    </div>
+</form>

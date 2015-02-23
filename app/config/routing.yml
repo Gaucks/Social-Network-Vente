@@ -1,0 +1,24 @@
+wishters_user:
+    resource: "@WishtersUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+wishters_front:
+    resource: "@WishtersFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+
+wishters_front_annonce:
+    resource: "@WishtersFrontBundle/Resources/config/routing_annonce.yml"
+    prefix:   /annonce
+
+wishters_front_relation:
+    resource: "@WishtersFrontBundle/Resources/config/routing_relation.yml"
+    prefix:   /relation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

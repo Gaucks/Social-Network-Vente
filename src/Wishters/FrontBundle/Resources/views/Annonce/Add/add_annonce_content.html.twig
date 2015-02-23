@@ -1,0 +1,20 @@
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li><a href="#">Administration d'annonce</a></li>
+    <li class="active">Ajouter</li>
+</ul>
+
+<div class="col-xs-12">
+    <form action="{{ path('wishters_front_annonce_add_default') }}" {{ form_enctype(form) }} method="post" >
+        <div class="col-xs-12 editAnnonce well">
+
+            {% include '@WishtersFront/Annonce/Form/form_annnonce.html.twig' %}
+
+            <div class="text-center">
+                <input type="submit" class="btn btn-success btn-radius-30" value="Publier cette annonce"/>
+            </div>
+
+        </div>
+
+    </form>
+</div>

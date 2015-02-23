@@ -1,0 +1,5 @@
+{% extends "WishtersUserBundle::layout_user.html.twig" %}
+
+{% block subheader %} {% include 'WishtersFrontBundle:SubheaderTemplate:editProfile.html.twig' %} {% endblock %}
+
+{% block body %}{% include "FOSUserBundle:Profile:edit_content.html.twig" %}{% endblock %}

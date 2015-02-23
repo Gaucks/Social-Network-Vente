@@ -1,0 +1,57 @@
+/* Le menu */
+.wish-menu{
+    height: auto;
+    background-color: #383735;
+    z-index: 2;
+}
+.wish-menu .wish-title h1 {
+    font-family: 'Pacifico', cursive;
+    letter-spacing: 2px;
+    line-height: 10px;
+    margin-left: 20px;
+}
+a#site_title{
+    color: #ffffff;
+}
+a#site_title:hover{
+    color: #008162;
+    text-decoration: none;
+}
+.user-infos{
+    padding: 10px;
+    background-color: #292929;
+    border-bottom: 5px solid salmon;
+    text-align: center;
+}
+.user-infos img{
+    margin: 0 auto;
+}
+.user-infos-options{
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.user-infos-options .button{
+    text-align: center;
+}
+
+.user-activity{
+    margin-top: 20px;
+}
+.user-activity h3{
+    color: #FFFFFF;
+    margin-left: 10px;
+}
+.user-activity .fa{
+    margin-right: 10px;
+}
+.user-activity .list-group .list-group-item:first-child, .user-activity .list-group .list-group-item:last-child{
+    border-radius: 0;
+}
+.user-activity .list-group .list-group-item{
+    background: transparent;
+    border-left: 0;
+    border: none;
+    font-size: 1.2em;
+}
+

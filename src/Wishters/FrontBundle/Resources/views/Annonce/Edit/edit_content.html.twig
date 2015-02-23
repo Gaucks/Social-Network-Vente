@@ -1,0 +1,23 @@
+<ul class="breadcrumb">
+    <li><a href="{{ path('wishters_front_homepage') }}">Accueil</a></li>
+    <li><a href="#">Administration d'annonce</a></li>
+    <li><a href="#">Editer</a></li>
+
+    <li class="active">{{ annonce.title }}</li>
+</ul>
+
+<form action="{{ path('wishters_front_annonce_edit',{'id': annonce.id }) }}" {{ form_enctype(form) }} method="post">
+    <div class="col-xs-10 col-xs-offset-1 editAnnonce well">
+
+        {% include '@WishtersFront/Annonce/Form/form_annnonce.html.twig' %}
+
+        <div class="text-center">
+            <input type="submit" class="btn btn-success btn-radius-30" value="Modifier cette annonce"/>
+            <hr/>
+            <p>Cette annonce n'est plus d'actualité ?</p>
+            <br/>
+            <a href="{{ path('wishters_front_annonce_remove', {'id': annonce.id }) }}"><button type="button" class="btn btn-danger btn-radius-30"> Supprimer cette annonce </button></a>
+        </div>
+
+    </div>
+</form>

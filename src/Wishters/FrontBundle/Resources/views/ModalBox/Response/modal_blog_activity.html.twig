@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Résumé du blog de {{ user.username }} </h4>
+</div>
+<div class="modal_blog_activity_box">
+    {% for r in result %}
+        <div class="row modal-body modal_blog_activity">
+            <div class="col-xs-2">
+                <img src="{{ asset('bundles/wishtersfront/images/defaults/user-6.jpg') }}" alt="#" class="img-responsive img-rounded"/>
+            </div>
+            <div class="col-xs-10">
+                <h5 class="strong">Le {{ r.date|date('d:m:Y à h:m') }}mn</h5>
+                <p>{{ r.content }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
